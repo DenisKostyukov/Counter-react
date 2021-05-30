@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import style from "./Step.module.sass";
 function Step(props) {
 	const { step, setStep } = props;
@@ -21,6 +22,15 @@ function Step(props) {
 			</label>
 		</>
 	);
+}
+Step.defaultProps ={
+	step: 1,
+	setStep: () =>{}
+}
+
+Step.propType = {
+	step: PropTypes.number,
+	setStep: PropTypes.func.isRequired,
 }
 
 export default Step;

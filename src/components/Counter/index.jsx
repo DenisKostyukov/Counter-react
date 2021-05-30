@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Button";
 import Step from "../Step";
+
 import style from "./Counter.module.sass";
 
 function Counter(props) {
@@ -21,7 +22,7 @@ function Counter(props) {
 		const {
 			target: { value },
 		} = e;
-		const regexp = /^[1-9]\d*$/;
+		const regexp = /^[1-9]\d*|0.*$/;
 		if (regexp.test(value) && e.key === "Enter") {
 			setDelay(value * 1000);
 		}
@@ -66,3 +67,5 @@ function Counter(props) {
 	);
 }
 export default Counter;
+
+
