@@ -24,7 +24,7 @@ function Counter(props) {
 		} = e;
 		const regexp = /^[1-9]\d*|0.*$/;
 		if (regexp.test(value) && e.key === "Enter") {
-			setDelay(value * 1000);
+			setDelay(1000/value);
 		}
 	};
 
@@ -53,7 +53,7 @@ function Counter(props) {
 				<div>Counter:{counter}</div>
 				<Step step={step} setStep={setStep} />
 				<label>
-					Задержка
+					Количество нажатий в секунду (Press Enter)
 					<input type="number" onKeyUp={changeDelay} />
 				</label>
 				<p>Auto click mode: {isAutoClick ? "Enabled" : "Disabled"}</p>
