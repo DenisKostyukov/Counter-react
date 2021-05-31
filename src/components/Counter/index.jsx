@@ -22,9 +22,11 @@ function Counter(props) {
 		const {
 			target: { value },
 		} = e;
-		const regexp = /^[1-9]\d*|0.*$/;
-		if (regexp.test(value) && e.key === "Enter") {
-			setDelay(1000/value);
+		if(value>0){
+			setClicksPerSecond(value)
+		}
+		if (value > 0 && e.key === "Enter") {
+			setDelay(1000 / clicksPerSecond);
 		}
 	};
 
@@ -38,6 +40,7 @@ function Counter(props) {
 			timeout = setTimeout(currentMode, delay);
 		} else clearTimeout(timeout);
 	});
+	const select = ({ target }) => target.select();
 
 	const [counter, setCounter] = useState(0);
 	const [step, setStep] = useState(1);
@@ -45,6 +48,7 @@ function Counter(props) {
 	const [isIncrement, setIsIncrement] = useState(true);
 	const [isAutoClick, setIsAutoClick] = useState(false);
 	const [delay, setDelay] = useState(1000);
+	const [clicksPerSecond, setClicksPerSecond] = useState(1)
 	const [caption, setCaption] = useState("Increment");
 
 	return (
@@ -54,7 +58,7 @@ function Counter(props) {
 				<Step step={step} setStep={setStep} />
 				<label>
 					Количество нажатий в секунду (Press Enter)
-					<input type="number" onKeyUp={changeDelay} />
+					<input type="number" min="1"  onFocus={select} onKeyUp={changeDelay} onChange={changeDelay} value={clicksPerSecond}/>
 				</label>
 				<p>Auto click mode: {isAutoClick ? "Enabled" : "Disabled"}</p>
 				<div className={style.controls}>
@@ -67,5 +71,3 @@ function Counter(props) {
 	);
 }
 export default Counter;
-
-
